@@ -12,7 +12,7 @@ def read_current_user(current_user = Depends(deps.get_current_user)):
     """
     Возвращает данные текущего авторизованного пользователя.
     """
-    return current_user  # Pydantic схема UserOut преобразует объект
+    return current_user
 
 
 @router.get("/", response_model=list[UserOut])
@@ -20,7 +20,7 @@ def list_users(db: Session = Depends(deps.get_db), admin_user = Depends(deps.get
     """
     Для администратора: получить список всех пользователей.
     """
-    users = db.query(user_service.User).all()  # можно импортировать модель User напрямую
+    users = db.query(user_service.User).all()
     return users
 
 

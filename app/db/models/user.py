@@ -11,7 +11,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_verified = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
-    verification_code = Column(String, nullable=True)   # код подтверждения (может быть null после верификации)
+    verification_code = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     def __repr__(self):

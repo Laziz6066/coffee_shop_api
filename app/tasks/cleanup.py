@@ -5,12 +5,10 @@ from app.core.config import settings
 from app.db.database import SessionLocal
 from app.db.models.user import User
 
-# Инициализируем Celery
+
 celery_app = Celery("coffee_shop_tasks", broker=settings.CELERY_BROKER_URL)
 celery_app.conf.result_backend = settings.CELERY_RESULT_BACKEND
 
-# Определяем периодическую задачу (каждые 24 часа)
-# (Если используем celery beat, можно настроить расписание здесь или в отдельном конфиге)
 celery_app.conf.beat_schedule = {
     "cleanup-unverified-everyday": {
         "task": "app.tasks.cleanup.delete_unverified_users",

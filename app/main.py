@@ -1,12 +1,11 @@
 # app/main.py
 from fastapi import FastAPI
 from app.core.config import settings
-from app.db import database  # импорт, чтобы создать engine
+from app.db import database
 from app.db.database import engine, Base
 from app.api.routes import auth, users
 
-# Создаем все таблицы в БД (если не используются миграции Alembic, для быстрого старта)
-# В продакшене лучше убрать или заменить на Alembic migrations
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
