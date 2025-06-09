@@ -47,7 +47,6 @@ def verify_email(email: str, code: str, db: Session = Depends(deps.get_db)):
         raise HTTPException(status_code=400, detail="Invalid or already verified user")
     if user.verification_code != code:
         raise HTTPException(status_code=400, detail="Invalid verification code")
-    # Помечаем как верифицированного
     user.is_verified = True
     user.verification_code = None
     db.commit()
